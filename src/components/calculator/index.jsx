@@ -37,7 +37,7 @@ const CalculatorApp = () => {
         "https://api.ipify.org/?format=json"
       ).then((response) => response.json());
 
-      const response = await fetch("http://13.234.34.122:5000", {
+      const response = await fetch("http://13.234.34.122:3000", {
         method: "POST",
         headers: {
           Accept: "application/json",
