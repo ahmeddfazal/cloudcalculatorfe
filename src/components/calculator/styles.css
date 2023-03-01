@@ -1,0 +1,15 @@
+.calculator-app-cont {
+  display: flex;
+}
+
+.calculator-app-cont .calculator {
+  width: 30rem;
+  padding: 3rem;
+  margin: 3rem;
+  box-shadow: 1rem 1rem 1rem #cecece;
+  border: 0.1rem solid #777;
+}
+
+.calculator-app-cont .calculator.logs-table-cont {
+  width: unset;
+}
