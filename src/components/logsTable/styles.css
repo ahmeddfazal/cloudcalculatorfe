@@ -1,0 +1,4 @@
+.ant-table-content {
+  max-height: calc(100vh - 22rem);
+  overflow: auto;
+}

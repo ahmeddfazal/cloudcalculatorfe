@@ -11,11 +11,11 @@ const CalculatorApp = () => {
   const [count, setCount] = useState(0);
   const [time, setTime] = useState(60);
   const [requestBlocked, setRequestBlocked] = useState(false);
+  const [logs, setLogs] = useState([]);
 
   useEffect(() => {
     let interval;
-    if (count === 20) {
-      setRequestBlocked(true);
+    if (requestBlocked) {
       interval = setInterval(() => {
         const timeDiff = time - 1;
         if (timeDiff < 0) {
@@ -27,7 +27,7 @@ const CalculatorApp = () => {
       }, 1000);
     }
     return () => clearInterval(interval);
-  }, [count, value, time]);
+  }, [requestBlocked]);
 
   const handleClick = async (e, v) => {
     if (v === "C") {
@@ -37,7 +37,7 @@ const CalculatorApp = () => {
         "https://api.ipify.org/?format=json"
       ).then((response) => response.json());
 
-      const response = await fetch("http://127.0.0.1:5000", {
+      const response = await fetch("http://13.234.34.122:5000", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -46,8 +46,12 @@ const CalculatorApp = () => {
         body: JSON.stringify({ ipAddress, input: value }),
       });
 
-      const { blocked } = await response.json();
+      const { blocked, output } = await response.json();
 
+      setLogs((logs) => [
+        { timeStamp: Date.now(), input: value, output: output, ipAddress },
+        ...logs,
+      ]);
       setRequestBlocked(blocked);
     } else {
       setValue(`${value.toString() + v}`);
@@ -68,17 +72,14 @@ const CalculatorApp = () => {
               >{`Request Blocked For ${time} seconds`}</span>
             ) : (
               <span style={{ color: "green" }}>{`${
-                20 - count
+                5 - count
               } Requests Left`}</span>
             )}
           </h3>
         </div>
-        <div>
-          <strong>Request Blocked!</strong>
-        </div>
       </Card>
       <Card title="User Action Logs" className="calculator logs-table-cont">
-        <LogsTable />
+        <LogsTable logs={logs} />
       </Card>
     </div>
   );

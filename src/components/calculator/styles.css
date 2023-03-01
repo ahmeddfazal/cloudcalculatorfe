@@ -12,4 +12,6 @@
 
 .calculator-app-cont .calculator.logs-table-cont {
   width: unset;
+  min-height: calc(100vh - 7rem);
+  max-height: calc(100vh - 7rem);
 }

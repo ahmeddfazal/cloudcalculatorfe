@@ -1,5 +1,7 @@
 import { Table } from "antd";
 
+import "./styles.css";
+
 const columns = [
   {
     title: "Time Stamp",
@@ -27,8 +29,8 @@ const columns = [
   },
 ];
 
-const LogsTable = ({ tableData = [] }) => {
-  return <Table columns={columns} dataSource={tableData} />;
+const LogsTable = ({ logs = [] }) => {
+  return <Table columns={columns} dataSource={logs} />;
 };
 
 export default LogsTable;
