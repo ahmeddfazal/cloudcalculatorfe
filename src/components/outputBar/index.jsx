@@ -2,11 +2,16 @@ import React from "react";
 
 import "./styles.css";
 
-const OutputBar = ({ value }) => {
+const OutputBar = ({ value, label }) => {
   return (
-    <h1 className="output-bar">
-      <strong>{value}</strong>
-    </h1>
+    <>
+      <span className="label">
+        <strong>{label}:</strong>
+      </span>
+      <h1 className="output-bar">
+        <strong>{value}</strong>
+      </h1>
+    </>
   );
 };
 
